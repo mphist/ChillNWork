@@ -1,0 +1,114 @@
+.todo-overlay {
+  visibility: hidden;
+
+  .todo-img {
+    height: 0;
+    visibility: hidden;
+  }
+}
+
+.todo-overlay-active {
+  height: 100%;
+  width: 20%;
+  background: #fff;
+  opacity: 0.9;
+  position: absolute;
+  top: 0;
+
+  .header-wrapper {
+    .todo-header {
+      text-align: center;
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      width: 0;
+    }
+
+    to {
+      width: 20%;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .button {
+    animation: slideIn 0.3s ease-out;
+    background-color: #000;
+  }
+
+  .button:hover {
+    background-color: #313030;
+  }
+
+  .close-btn {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
+  .input-wrapper {
+    width: 300px;
+    margin: 30px;
+    text-align: center;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .todo-img {
+    position: absolute;
+    bottom: 0;
+    opacity: 0.8;
+    width: 85%;
+    left: 7%;
+  }
+}
+
+.todo-overlay-inactive {
+  height: 100%;
+  width: 0;
+  background: #fff;
+  opacity: 0.9;
+  position: absolute;
+  top: 0;
+
+  .close-btn {
+    visibility: hidden;
+  }
+  .todo-header {
+    visibility: hidden;
+  }
+
+  @keyframes slideOut {
+    from {
+      width: 20%;
+    }
+
+    to {
+      width: 0%;
+    }
+  }
+
+  animation: slideOut 0.3s ease-out;
+
+  .input-wrapper {
+    visibility: hidden;
+  }
+
+  .todoList {
+    visibility: hidden;
+  }
+
+  .todo-img {
+    height: 0;
+    visibility: hidden;
+  }
+}

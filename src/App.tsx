@@ -1,26 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import HeaderContainer from "./containers/HeaderContainer";
+import BodyContainer from "./containers/BodyContainer";
 
-const App: React.FC = () => {
+const App = () => {
+  const img = process.env.PUBLIC_URL + "/tesla3.jpg";
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <HeaderContainer />
+      <BodyContainer />
     </div>
   );
-}
+};
 
 export default App;

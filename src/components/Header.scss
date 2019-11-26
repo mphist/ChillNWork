@@ -1,0 +1,28 @@
+.header {
+  text-align: center;
+  margin-top: 20px;
+  letter-spacing: 2px;
+  .slider {
+    position: absolute;
+    left: 0;
+    transform: translateY(50%);
+    cursor: pointer;
+  }
+
+  .slider:hover {
+    position: absolute;
+    left: 0;
+    transform: translateY(50%);
+    cursor: pointer;
+
+    svg {
+      margin-left: 10px;
+      stroke: black;
+      stroke-width: 10;
+    }
+  }
+
+  svg {
+    margin-left: 10px;
+  }
+}

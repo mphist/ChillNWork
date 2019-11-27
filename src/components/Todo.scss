@@ -31,6 +31,8 @@
     }
   }
 
+  animation: slideIn 0.3s ease-out;
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -40,8 +42,16 @@
     }
   }
 
+  @keyframes inputSlide {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
   .button {
-    animation: slideIn 0.3s ease-out;
     background-color: #000;
   }
 
@@ -57,10 +67,18 @@
   }
 
   .input-wrapper {
-    width: 300px;
-    margin: 30px;
+    width: 100%;
+    margin: 30px 0;
     text-align: center;
-    animation: fadeIn 0.3s ease-out;
+    animation: fadeIn 0.3s ease-in;
+
+    .MuiFormLabel-root.Mui-focused {
+      color: #000;
+    }
+
+    .MuiInput-underline:after {
+      border-bottom: 2px solid #000;
+    }
   }
 
   .todo-img {

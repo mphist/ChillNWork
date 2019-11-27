@@ -1,6 +1,9 @@
-.TodoItem.done .text {
-  text-decoration: line-through;
+.TodoItem.done {
   color: #999999;
+
+  .MuiCheckbox-colorSecondary.Mui-checked {
+    color: #000;
+  }
 }
 
 .TodoItem .remove {

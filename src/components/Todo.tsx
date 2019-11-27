@@ -40,7 +40,6 @@ const Todo = ({ handleClick }: PropsType) => {
             }
           }}
         />
-
         <Button
           variant="contained"
           color="primary"

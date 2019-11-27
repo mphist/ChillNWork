@@ -60,7 +60,11 @@ const SoundContainer = () => {
     />
   ));
 
-  return <div className="soundList">{soundList}</div>;
+  return (
+    <div className="soundList" style={{ margin: "50px auto" }}>
+      {soundList}
+    </div>
+  );
 };
 
 export default SoundContainer;

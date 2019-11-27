@@ -1,15 +1,16 @@
 .todoList {
   @keyframes fadeIn {
-    from {
+    to {
       opacity: 0;
     }
-    to {
+    from {
       opacity: 1;
     }
   }
-  animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.3 ease-out;
 
   ul {
     width: 300px;
+    margin: 0 auto;
   }
 }

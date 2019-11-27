@@ -1,16 +1,18 @@
-.todoList {
-  @keyframes fadeIn {
-    to {
-      opacity: 0;
+.todo-overlay-active {
+  .todoList {
+    @keyframes fadeIn {
+      to {
+        opacity: 0;
+      }
+      from {
+        opacity: 1;
+      }
     }
-    from {
-      opacity: 1;
-    }
-  }
-  animation: fadeIn 0.3 ease-out;
+    animation: fadeIn 1s ease-out;
 
-  ul {
-    width: 300px;
-    margin: 0 auto;
+    ul {
+      width: 300px;
+      margin: 0 auto;
+    }
   }
 }

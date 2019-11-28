@@ -29,12 +29,11 @@ PropsType) => {
       <button id={id} className="media-btn" onClick={handleClick}>
         {svg}
         <ReactPlayer
-          url={url} //"https://soundcloud.com/yeoli-lu/real-rain-sound"
+          url={url}
           volume={volume}
           playing={playing}
           width={0}
           height={0}
-          //onPause={handlePause}
           preload={true}
           loop={true}
         />

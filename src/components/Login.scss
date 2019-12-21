@@ -1,0 +1,98 @@
+.login-overlay-active {
+  width: 400px;
+  height: 450px;
+  background: #fff;
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%, -50%);
+  border: 1px solid lightgray;
+  z-index: 3;
+
+  .header-wrapper {
+    text-align: center;
+  }
+
+  .close-btn {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
+  .local-login-wrapper {
+    width: 350px;
+    height: 100px;
+    margin-top: 28px;
+  }
+
+  .social-login-wrapper {
+    width: 400px;
+    height: 106px;
+    background: #fff;
+    margin-top: 40px;
+
+    .social-login-button {
+      width: 388px;
+
+      .provider {
+        text-transform: capitalize;
+      }
+      .icon {
+        margin-left: 60px;
+        font-size: 30px;
+        transform: translateY(3px);
+      }
+      .text {
+        margin: 0 20px;
+        transform: translateY(4px);
+      }
+
+      &.social-login-button.google {
+        display: flex;
+        background: #f5522d;
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+        padding: 5px;
+        margin: 1px auto;
+        border: 1px solid #d03a18;
+      }
+
+      &.social-login-button.facebook {
+        display: flex;
+        background: #347de8;
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+        padding: 5px;
+        margin: 1px auto;
+        border: 1px solid #205eb9;
+      }
+
+      &:hover {
+        cursor: pointer;
+        filter: brightness(1.1);
+      }
+    }
+  }
+
+  .register-wrapper {
+    padding: 10px;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 15px;
+
+    .register-link {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+}
+
+.login-overlay-inactive,
+.login-overlay {
+  visibility: hidden;
+}

@@ -55,6 +55,22 @@
     background-color: #000;
   }
 
+  .MuiButton-root {
+    margin: 10px;
+    padding: 3px 20px;
+    min-width: 35px;
+    width: 35px;
+    transform: translateY(10px);
+    font-size: 13px;
+  }
+
+  .MuiCheckbox-colorSecondary,
+  .MuiCheckbox-colorSecondary.Mui-checked {
+    &:hover {
+      background-color: #2b292a14;
+    }
+  }
+
   .button:hover {
     background-color: #313030;
   }
@@ -68,7 +84,7 @@
 
   .input-wrapper {
     display: flex;
-    transform: translateX(55px);
+    transform: translateX(65px);
     width: 100%;
     margin: 30px 0;
     text-align: center;

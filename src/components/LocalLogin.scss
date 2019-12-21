@@ -1,0 +1,65 @@
+.local-login {
+  .login-form {
+    .email,
+    .password {
+      border: none;
+      margin: 20px 50px;
+      border-bottom: 1px solid #bdbbbb;
+      width: 300px;
+
+      font-size: 15px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .incorrect-pw-msg,
+  .incorrect-email {
+    visibility: hidden;
+    font-size: 12px;
+    margin-left: 50px;
+    position: relative;
+    top: -18px;
+
+    &-active {
+      color: red;
+      font-size: 12px;
+      margin-left: 50px;
+      position: relative;
+      top: -18px;
+    }
+  }
+
+  .bottom-wrapper {
+    padding: 2px;
+
+    .forgot-btn {
+      margin-left: 50px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .login-btn {
+      background: #333333;
+      outline: none;
+      border: none;
+      padding: 7px 15px;
+      font-size: 15px;
+      border-radius: 2px;
+      position: fixed;
+      right: 50px;
+      color: #fff;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:active {
+        background: #464646;
+      }
+    }
+  }
+}

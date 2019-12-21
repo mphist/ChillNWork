@@ -1,4 +1,33 @@
 .body {
   //background-color: #c9eeff;
   height: 500px;
+
+  .patch {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 0.5;
+      }
+    }
+
+    &-active {
+      width: 100%;
+      height: 100%;
+      opacity: 0.5;
+      animation: fadeIn 0.5s;
+      visibility: visible;
+      position: fixed;
+      top: 0;
+      background: black;
+      z-index: 2;
+    }
+  }
 }

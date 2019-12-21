@@ -3,10 +3,12 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import media from "./media";
 import todo from "./todo";
+import auth from "./auth";
 
 const rootReducer = combineReducers({
   media,
-  todo
+  todo,
+  auth
 });
 
 const persistConfig = {

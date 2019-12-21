@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import TodoItem from "./TodoItem";
 import List from "@material-ui/core/List";
 import "./TodoList.scss";
@@ -35,16 +35,6 @@ const TodoList = ({ todos, handleToggle, handleRemove }: PropType) => {
       )}
     </Draggable>
   ));
-
-  const handleClick = (e: React.MouseEvent<HTMLUListElement, MouseEvent>) => {
-    console.log((e.target as HTMLInputElement).id);
-  };
-
-  /* return (
-    <div className="todoList">
-      <ul onClick={handleClick}>{todoItemList}</ul>
-    </div>
-  ); */
 
   return (
     <div className="todoList">

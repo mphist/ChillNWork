@@ -10,7 +10,6 @@ interface PropsType {
   url: string;
   handleClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   handleVolumeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  //handlePause: () => void;
 }
 
 const Sound = ({
@@ -21,9 +20,7 @@ const Sound = ({
   url,
   handleClick,
   handleVolumeChange
-}: //handlePause
-PropsType) => {
-  console.log("Sound ", url);
+}: PropsType) => {
   return (
     <div id="media-section" className="media-section">
       <button id={id} className="media-btn" onClick={handleClick}>

@@ -18,13 +18,15 @@ const HeaderContainer = () => {
       and withCredentials value = ${withCredentials}`
     );
 
+    // Only for social login
     if (!loginStatus) {
       axios({
         method: "post",
         url: "http://localhost:4000/auth/validateAuth",
-        withCredentials: withCredentials
+        withCredentials: true
       })
         .then(function(response) {
+          console.log("SHOW ME DA RESPONE", response);
           if (response.data.is_loggedin) {
             console.log("dispatch login");
             dispatch(login());

@@ -24,13 +24,13 @@ export default function auth(
     case LOGIN:
       return {
         is_loggedin: true,
-        with_credentials: false
+        with_credentials: true //doesn't matter
       };
 
     case LOGOUT:
       return {
         is_loggedin: false,
-        with_credentials: true
+        with_credentials: false
       };
 
     default:

@@ -9,7 +9,7 @@ const TodoContainer = () => {
 
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleAddTodo = () => {
     const value = (document.getElementById("input-task") as HTMLInputElement)
       .value;
     const idx = todos.length;
@@ -19,7 +19,7 @@ const TodoContainer = () => {
     }
   };
 
-  return <Todo handleClick={handleClick} />;
+  return <Todo handleAddTodo={handleAddTodo} />;
 };
 
 export default TodoContainer;

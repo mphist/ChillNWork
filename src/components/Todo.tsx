@@ -2,16 +2,14 @@ import React from "react";
 import TodoListContainer from "../containers/TodoListContainer";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import Icon from "@material-ui/core/Icon";
+
 import "./Todo.scss";
 
 interface PropsType {
-  handleClick: () => void;
+  handleAddTodo: () => void;
 }
 
-const Todo = ({ handleClick }: PropsType) => {
-  const img = process.env.PUBLIC_URL + "/fighting.jpg";
-
+const Todo = ({ handleAddTodo }: PropsType) => {
   return (
     <div id="todo-overlay" className="todo-overlay">
       <div className="header-wrapper">
@@ -36,7 +34,7 @@ const Todo = ({ handleClick }: PropsType) => {
           label="New task"
           onKeyUp={e => {
             if (e.keyCode === 13) {
-              handleClick();
+              handleAddTodo();
             }
           }}
         />
@@ -44,7 +42,7 @@ const Todo = ({ handleClick }: PropsType) => {
           variant="contained"
           color="primary"
           className={"button"}
-          onClick={handleClick}
+          onClick={handleAddTodo}
           style={{ transform: `translateY('3px')`, margin: "10px" }}
         >
           Add

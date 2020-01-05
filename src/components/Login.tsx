@@ -1,12 +1,41 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import SocialLoginButton from "./SocialLoginButton";
 import LocalLogin from "./LocalLogin";
-
+import axios from "axios";
+import { fetchTodos } from "../store/modules/todo";
 import "./Login.scss";
 
 const Login = () => {
   const handleSocialLogin = (provider: string) => {
     window.location.replace(`http://localhost:4000/auth/${provider}`);
+  };
+
+  const fetchUser = async (email: string, password: string) => {
+    try {
+      const user = await axios.post("http://localhost:4000/auth/check", {
+        email: email,
+        password: password
+      });
+      return user;
+    } catch (error) {
+      console.log("error fetching user", error.response);
+      return error.response;
+    }
+  };
+
+  const fetchTodoThunk = (email: string) => {
+    return (dispatch: Dispatch<any>) => {
+      return axios({
+        method: "post",
+        url: "http://localhost:4000/data/todo",
+        data: {
+          email: email
+        }
+      }).then(response => {
+        console.log("fetchTodoThunk called", response.data);
+        dispatch(fetchTodos(response.data));
+      });
+    };
   };
 
   return (
@@ -33,7 +62,7 @@ const Login = () => {
           X
         </span>
       </div>
-      <LocalLogin />
+      <LocalLogin fetchUser={fetchUser} fetchTodoThunk={fetchTodoThunk} />
       <div className="social-login-wrapper">
         <SocialLoginButton
           provider={"google"}

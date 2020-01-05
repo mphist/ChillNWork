@@ -13,12 +13,12 @@ module.exports = function() {
   console.log("invoke passport");
 
   passport.serializeUser(function(user, done) {
-    console.log("----SERIALIZE----", user);
+    //console.log("----SERIALIZE----", user);
     done(null, user.id);
   });
 
   passport.deserializeUser(function(id, done) {
-    console.log("----DESERIALIZE----");
+    //console.log("----DESERIALIZE----");
 
     db.oneOrNone(`SELECT * FROM users WHERE id = $1`, [id])
       .then(function(user) {
@@ -36,12 +36,12 @@ module.exports = function() {
         passwordField: "login-password"
       },
       function(email, password, done) {
-        console.log("Email passed to passport", email);
+        //console.log("Email passed to passport", email);
         db.oneOrNone("SELECT id, email, password FROM users WHERE email = $1", [
           email
         ])
           .then(function(user) {
-            console.log("user pulled", user);
+            //console.log("user pulled", user);
             // Load hash from your password DB.
             if (user) {
               const hash = user.password;
@@ -49,7 +49,7 @@ module.exports = function() {
               bcrypt.compare(password, hash, function(err, res) {
                 // res === true
                 if (res === true) {
-                  console.log("You entered the correct password");
+                  //console.log("You entered the correct password");
                   done(null, user);
                 } else {
                   console.log("You entered the wrong password");
@@ -76,7 +76,7 @@ module.exports = function() {
         callbackURL: "http://localhost:4000/auth/google/callback"
       },
       function(accessToken, refreshToken, profile, done) {
-        console.log("\n\n\n\n\n\n\n\n\nProfile ", profile);
+        //console.log("\n\n\n\n\n\n\n\n\nProfile ", profile);
 
         const email = profile.emails[0].value;
 
@@ -94,7 +94,7 @@ module.exports = function() {
                 [id, email, profile.displayName, profile.id]
               )
                 .then(function(user) {
-                  console.log("DATA created:", user);
+                  //console.log("DATA created:", user);
                   return done(null, user);
                 })
                 .catch(function(error) {

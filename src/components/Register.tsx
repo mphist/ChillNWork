@@ -10,7 +10,6 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //e.preventDefault();
     const { className: name, value } = e.target;
 
     if (name === "password") {
@@ -40,8 +39,10 @@ const Register = () => {
 
     if (validateForm()) {
       (document.getElementById("create-form") as HTMLFormElement).submit();
-      // account creation successful...
-      dispatch(login());
+      const email = (document.getElementById(
+        "email-register"
+      ) as HTMLInputElement).value;
+      dispatch(login(email));
     } else {
       console.log("form has errors");
     }
@@ -126,9 +127,6 @@ const Register = () => {
               required
               onChange={handleChange}
             />
-            {/* <span id="mismatch" className="mismatch">
-              Passwords don't match. Please try again
-            </span> */}
             <div id="error-msg" className="error-msg">
               <span className="msg">
                 Passwords don't match. Please try again.

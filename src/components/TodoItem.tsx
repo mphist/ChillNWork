@@ -1,18 +1,15 @@
 import React from "react";
-import ListItem from "@material-ui/core/ListItem";
-import Checkbox from "@material-ui/core/Checkbox";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import IconButton from "@material-ui/core/IconButton";
+import {
+  ListItem,
+  Checkbox,
+  ListItemIcon,
+  ListItemText,
+  IconButton
+} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { Todos } from "../store/modules/todo";
 
 import "./TodoItem.scss";
-
-type Todos = {
-  id: number;
-  name: string;
-  done?: boolean;
-};
 
 interface PropType {
   todo: Todos;
@@ -21,17 +18,6 @@ interface PropType {
 }
 
 const TodoItem = ({ todo, onToggle, onRemove }: PropType) => {
-  /* return (
-    <li className={`TodoItem ${todo.done ? `done` : ``} `}>
-      <span className="text" onClick={() => onToggle(todo.id)}>
-        {todo.name}
-      </span>
-      <span className="remove" onClick={() => onRemove(todo.id)}>
-        (X)
-      </span>
-    </li>
-  ); */
-
   return (
     <ListItem
       className={`TodoItem ${todo.done ? `done` : ``}`}
@@ -39,7 +25,7 @@ const TodoItem = ({ todo, onToggle, onRemove }: PropType) => {
       role={undefined}
       dense
       button
-      onClick={() => onToggle(todo.id)}
+      onClick={() => onToggle(todo.order_id)}
     >
       <ListItemIcon>
         <Checkbox
@@ -47,11 +33,10 @@ const TodoItem = ({ todo, onToggle, onRemove }: PropType) => {
           checked={todo.done}
           tabIndex={-1}
           disableRipple
-          //inputProps={{ 'aria-labelledby': labelId }}
         />
       </ListItemIcon>
-      <ListItemText id={String(todo.id)} primary={todo.name} />
-      <IconButton aria-label="delete" onClick={() => onRemove(todo.id)}>
+      <ListItemText id={String(todo.id)} primary={todo.task} />
+      <IconButton aria-label="delete" onClick={() => onRemove(todo.order_id)}>
         <DeleteIcon />
       </IconButton>
     </ListItem>

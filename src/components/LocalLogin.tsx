@@ -1,26 +1,16 @@
 import React from "react";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { login } from "../store/modules/auth";
 
 import "./LocalLogin.scss";
 
-const LocalLogin = () => {
-  const dispatch = useDispatch();
+interface PropType {
+  fetchUser: (email: string, password: string) => Promise<any>;
+  fetchTodoThunk: (email: string) => Function;
+}
 
-  const fetchUser = async (email: string, password: string) => {
-    try {
-      const user = await axios.post("http://localhost:4000/auth/check", {
-        email: email,
-        password: password
-      });
-      console.log("fetched user", user);
-      return user;
-    } catch (error) {
-      console.log("error fetching user", error.response);
-      return error.response;
-    }
-  };
+const LocalLogin = ({ fetchUser, fetchTodoThunk }: PropType) => {
+  const dispatch = useDispatch();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     console.log("handlesubmit");
@@ -37,7 +27,9 @@ const LocalLogin = () => {
           console.log("user data", user);
           if (user.status === 200) {
             console.log("login successful!!");
-            dispatch(login());
+            console.log("user_id", user.data);
+            dispatch(login(email));
+            dispatch(fetchTodoThunk(email));
             (document.getElementById("login-form") as HTMLFormElement).submit();
           } else if (
             user.status === 401 &&

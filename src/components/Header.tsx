@@ -39,11 +39,6 @@ const Header = ({ loginStatus, handleLogout }: PropTypes) => {
         </span>
         <h1>ChillNWork</h1>
         <div className="logout">
-          {/*  <form
-            id="form-logout"
-            action="http://localhost:4000/auth/logout"
-            method="post"
-          > */}
           <button
             type="button"
             id="btn-logout"
@@ -60,7 +55,6 @@ const Header = ({ loginStatus, handleLogout }: PropTypes) => {
               <path d="m505.75 198.253906-85.335938-85.332031c-6.097656-6.101563-15.273437-7.9375-23.25-4.632813-7.957031 3.308594-13.164062 11.09375-13.164062 19.714844v64h-85.332031c-11.777344 0-21.335938 9.554688-21.335938 21.332032 0 11.777343 9.558594 21.332031 21.335938 21.332031h85.332031v64c0 8.621093 5.207031 16.40625 13.164062 19.714843 7.976563 3.304688 17.152344 1.46875 23.25-4.628906l85.335938-85.335937c8.339844-8.339844 8.339844-21.824219 0-30.164063zm0 0" />
             </svg>
           </button>
-          {/*  </form> */}
         </div>
       </div>
     );

@@ -7,7 +7,12 @@ const {
   authRouter,
   authCheckRouter,
   authValidateAuthRouter,
-  authLogoutRouter
+  authLogoutRouter,
+  todoRouter,
+  todoPushRouter,
+  todoToggleRouter,
+  todoRemoveRouter,
+  todoRearrangeRouter
 } = require("./routers");
 
 const app = express();
@@ -54,13 +59,13 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Routing
 app.get("/", (req, res) => {
-  console.log("SESSION at main route /", req.session);
+  /* console.log("SESSION at main route /", req.session);
   console.log("after serilalization ", req.session.passport);
-  console.log("after deserialization req.user ", req.user);
+  console.log("after deserialization req.user ", req.user); */
   res.redirect("http://localhost:3000");
 });
-
 app.post("/register", registerRouter);
 app.post("/auth", authRouter);
 // client checks with server so user can retry if the user entered the wrong info
@@ -79,7 +84,6 @@ app.get(
 );
 app.get(
   "/auth/google/callback",
-
   passport.authenticate("google", {
     failureRedirect: "/auth/google"
   }),
@@ -88,6 +92,11 @@ app.get(
     res.redirect("/");
   }
 );
+app.post("/data/todo", todoRouter);
+app.post("/data/todo/push", todoPushRouter);
+app.post("/data/todo/toggle", todoToggleRouter);
+app.post("/data/todo/remove", todoRemoveRouter);
+app.post("/data/todo/rearrange", todoRearrangeRouter);
 app.listen(4000, function() {
   console.log("Example app listening on port 4000!");
 });

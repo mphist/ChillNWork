@@ -4,9 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/modules";
 import axios from "axios";
 import { login, logout } from "../store/modules/auth";
+import { removeFromStore } from "../store/modules/todo";
 
 const HeaderContainer = () => {
   const {
+    email,
     is_loggedin: loginStatus,
     with_credentials: withCredentials
   } = useSelector((state: RootState) => state.auth);
@@ -29,7 +31,7 @@ const HeaderContainer = () => {
           console.log("SHOW ME DA RESPONE", response);
           if (response.data.is_loggedin) {
             console.log("dispatch login");
-            dispatch(login());
+            dispatch(login(email));
           }
         })
         .catch(function(err) {
@@ -49,6 +51,7 @@ const HeaderContainer = () => {
         if (response.data === "Session is destroyed") {
           console.log("dispatch logout");
           dispatch(logout());
+          dispatch(removeFromStore());
           window.location.replace("/");
         }
       })

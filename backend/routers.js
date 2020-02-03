@@ -56,7 +56,7 @@ module.exports = {
     });
   },
   authRouter: function authRouter(req, res, next) {
-    //console.log("connected to /auth");
+    console.log("connected to /auth");
     passport.authenticate("local", function(err, user, info) {
       //console.log(" user in /auth", user);
       if (err) {

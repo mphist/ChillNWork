@@ -60,20 +60,26 @@ app.use(function(req, res, next) {
 });
 
 // Routing
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   /* console.log("SESSION at main route /", req.session);
   console.log("after serilalization ", req.session.passport);
   console.log("after deserialization req.user ", req.user); */
-  res.redirect("http://localhost:3000");
+  //res.redirect("http://localhost:3000");
+  console.log(process.env.NODE_ENV);
+  if (process.env.NODE_ENV === "production") {
+    res.redirect("https://chillnwork.com");
+  } else if (process.env.NODE_ENV === "development") {
+    res.redirect("http://localhost:3000");
+  }
 });
-app.post("/register", registerRouter);
-app.post("/auth", authRouter);
+app.post("/api/register", registerRouter);
+app.post("/api/auth", authRouter);
 // client checks with server so user can retry if the user entered the wrong info
-app.post("/auth/check", authCheckRouter);
-app.post("/auth/validateAuth", authValidateAuthRouter);
-app.post("/auth/logout", authLogoutRouter);
+app.post("/api/auth/check", authCheckRouter);
+app.post("/api/auth/validateAuth", authValidateAuthRouter);
+app.post("/api/auth/logout", authLogoutRouter);
 app.get(
-  "/auth/google",
+  "/api/auth/google",
   passport.authenticate("google", {
     scope: [
       "https://www.googleapis.com/auth/plus.login",
@@ -83,20 +89,20 @@ app.get(
   })
 );
 app.get(
-  "/auth/google/callback",
+  "/api/auth/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "/auth/google"
+    failureRedirect: "/api/auth/google"
   }),
   function(req, res) {
     console.log("authentication successful");
-    res.redirect("/");
+    res.redirect("/api");
   }
 );
-app.post("/data/todo", todoRouter);
-app.post("/data/todo/push", todoPushRouter);
-app.post("/data/todo/toggle", todoToggleRouter);
-app.post("/data/todo/remove", todoRemoveRouter);
-app.post("/data/todo/rearrange", todoRearrangeRouter);
+app.post("/api/data/todo", todoRouter);
+app.post("/api/data/todo/push", todoPushRouter);
+app.post("/api/data/todo/toggle", todoToggleRouter);
+app.post("/api/data/todo/remove", todoRemoveRouter);
+app.post("/api/data/todo/rearrange", todoRearrangeRouter);
 app.listen(4000, function() {
   console.log("Example app listening on port 4000!");
 });

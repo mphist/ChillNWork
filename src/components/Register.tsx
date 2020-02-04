@@ -88,7 +88,7 @@ const Register = () => {
       <div className="create-account">
         <div className="create-form">
           <form
-            action="http://localhost:4000/register"
+            action={process.env.REACT_APP_SITE_API_URL + "/register"}
             id="create-form"
             method="post"
             onSubmit={handleSubmit}

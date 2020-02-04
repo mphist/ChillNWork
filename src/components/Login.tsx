@@ -7,15 +7,20 @@ import "./Login.scss";
 
 const Login = () => {
   const handleSocialLogin = (provider: string) => {
-    window.location.replace(`http://localhost:4000/auth/${provider}`);
+    window.location.replace(
+      process.env.REACT_APP_SITE_API_URL + `/auth/${provider}`
+    );
   };
 
   const fetchUser = async (email: string, password: string) => {
     try {
-      const user = await axios.post("http://localhost:4000/auth/check", {
-        email: email,
-        password: password
-      });
+      const user = await axios.post(
+        process.env.REACT_APP_SITE_API_URL + "/auth/check",
+        {
+          email: email,
+          password: password
+        }
+      );
       return user;
     } catch (error) {
       console.log("error fetching user", error.response);
@@ -27,7 +32,7 @@ const Login = () => {
     return (dispatch: Dispatch<any>) => {
       return axios({
         method: "post",
-        url: "http://localhost:4000/data/todo",
+        url: process.env.REACT_APP_SITE_API_URL + "/data/todo",
         data: {
           email: email
         }

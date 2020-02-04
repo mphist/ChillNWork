@@ -24,7 +24,7 @@ const HeaderContainer = () => {
     if (!loginStatus) {
       axios({
         method: "post",
-        url: "http://localhost:4000/auth/validateAuth",
+        url: process.env.REACT_APP_SITE_API_URL + "/auth/validateAuth",
         withCredentials: true
       })
         .then(function(response) {
@@ -43,7 +43,7 @@ const HeaderContainer = () => {
   const handleLogout = () => {
     axios({
       method: "post",
-      url: "http://localhost:4000/auth/logout",
+      url: process.env.REACT_APP_SITE_API_URL + "/auth/logout",
       withCredentials: true
     })
       .then(function(response) {

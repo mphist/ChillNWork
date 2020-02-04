@@ -16,7 +16,7 @@ const TodoListContainer = () => {
     console.log("toggling", id, todos);
     axios({
       method: "post",
-      url: "http://localhost:4000/data/todo/toggle",
+      url: process.env.REACT_APP_SITE_API_URL + "/data/todo/toggle",
       data: { id: id }
     })
       .then(response => {
@@ -29,7 +29,7 @@ const TodoListContainer = () => {
   const handleRemove = (id: number) => {
     axios({
       method: "post",
-      url: "http://localhost:4000/data/todo/remove",
+      url: process.env.REACT_APP_SITE_API_URL + "/data/todo/remove",
       data: { id: id }
     })
       .then(response => {
@@ -52,7 +52,7 @@ const TodoListContainer = () => {
       );
       axios({
         method: "post",
-        url: "http://localhost:4000/data/todo/rearrange",
+        url: process.env.REACT_APP_SITE_API_URL + "/data/todo/rearrange",
         data: {
           source_idx: result.source.index + 1,
           destination_idx: result.destination.index + 1

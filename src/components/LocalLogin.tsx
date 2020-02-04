@@ -62,7 +62,7 @@ const LocalLogin = ({ fetchUser, fetchTodoThunk }: PropType) => {
       <div className="login-form">
         <form
           id="login-form"
-          action="http://localhost:4000/auth"
+          action={process.env.REACT_APP_SITE_API_URL + "/auth"}
           method="post"
           onSubmit={handleSubmit}
         >

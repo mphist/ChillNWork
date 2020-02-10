@@ -38,7 +38,9 @@ app.use(bodyParser.json());
 // Enable CORS
 const ALLOWED_ORIGINS = [
   "http://localhost:3000",
-  "http://localhost:4000/auth/logout"
+  "http://localhost:4000/auth/logout",
+  "https://chillnwork.com",
+  "https://chillnwork.com/api/auth/logout"
 ];
 app.use(function(req, res, next) {
   if (ALLOWED_ORIGINS.indexOf(req.headers.origin) > -1) {

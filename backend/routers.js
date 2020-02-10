@@ -9,6 +9,7 @@ const passport = require("./passport")();
 module.exports = {
   registerRouter: function registerRouter(req, res, next) {
     const { email, password } = req.body;
+    console.log("email and password passed to registerRouter", email, password);
 
     db.oneOrNone("SELECT * FROM users WHERE email = $1", [email]).then(function(
       user

@@ -13,7 +13,7 @@ module.exports = {
   registerRouter: function registerRouter(req, res, next) {
     const { email, password } = req.body;
     console.log("email and password passed to registerRouter", email, password);
-
+    console.log(`This is ${process.env.NODE_ENV} environment`);
     db.oneOrNone("SELECT * FROM users WHERE email = $1", [email]).then(function(
       user
     ) {

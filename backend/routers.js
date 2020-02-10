@@ -1,5 +1,8 @@
 const pgp = require("pg-promise")(/*options*/);
-const dbKeys = require("./env/key").postgresql;
+const dbKeys =
+  process.env.NODE_ENV === "production"
+    ? require("./env/key").postgresql_prod
+    : require("./env/key").postgresql_dev;
 const connectionStr = `postgres://${dbKeys.username}:${dbKeys.password}@${dbKeys.host}:${dbKeys.port}/${dbKeys.database}`;
 const db = pgp(connectionStr);
 const shortid = require("shortid");

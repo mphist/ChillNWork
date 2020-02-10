@@ -3,7 +3,10 @@ module.exports = function() {
   const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
   const google = require("./env/key").google;
   const pgp = require("pg-promise")(/*options*/);
-  const keys = require("./env/key").postgresql;
+  const keys =
+    process.env.NODE_ENV === "production"
+      ? require("./env/key").postgresql_prod
+      : require("./env/key").postgresql_dev;
   const connectionStr = `postgres://${keys.username}:${keys.password}@${keys.host}:${keys.port}/${keys.database}`;
   const db = pgp(connectionStr);
   const shortid = require("shortid");

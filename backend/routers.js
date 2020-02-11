@@ -48,7 +48,11 @@ module.exports = {
                   req.session.is_loggedin = true;
                   //console.log("---SESSION data----", req.session);
                   //res.status(200).send("registration successful");
-                  res.redirect("http://localhost:3000");
+                  if (process.env.NODE_ENV === "production") {
+                    res.redirect("https://chillnwork.com");
+                  } else if (process.env.NODE_ENV === "development") {
+                    res.redirect("http://localhost:3000");
+                  }
                 });
               })
               .catch(function(error) {
@@ -82,7 +86,11 @@ module.exports = {
         req.session.is_loggedin = true;
         //console.log("---SESSION data----", req.session);
         //res.status(200).send("login successful :)");
-        res.redirect("http://localhost:3000");
+        if (process.env.NODE_ENV === "production") {
+          res.redirect("https://chillnwork.com");
+        } else if (process.env.NODE_ENV === "development") {
+          res.redirect("http://localhost:3000");
+        }
       });
     })(req, res, next);
   },

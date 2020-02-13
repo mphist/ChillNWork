@@ -167,6 +167,7 @@ module.exports = {
   },
   todoPushRouter: function todoPushRouter(req, res, next) {
     const { email, task, done } = req.body;
+    console.log(email, task, done);
     db.one("SELECT MAX(order_id) FROM todolist WHERE email = $1", [email])
       .then(function(response) {
         const order_id = response.max === null ? 1 : parseInt(response.max) + 1;

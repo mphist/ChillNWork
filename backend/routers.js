@@ -170,6 +170,7 @@ module.exports = {
     console.log(email, task, done);
     db.one("SELECT MAX(order_id) FROM todolist WHERE email = $1", [email])
       .then(function(response) {
+        console.log("response is ", response);
         const order_id = response.max === null ? 1 : parseInt(response.max) + 1;
         db.one(
           `INSERT INTO todolist (email, task, done, order_id) VALUES 
@@ -177,7 +178,7 @@ module.exports = {
           [email, task, done, order_id]
         )
           .then(function(data) {
-            //console.log("Todo inserted into DB", data);
+            console.log("Todo inserted into DB", data);
             res.send(data);
           })
           .catch(function(err) {

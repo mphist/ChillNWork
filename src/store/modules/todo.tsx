@@ -50,7 +50,9 @@ export default function todo(
 ): TodosState {
   switch (action.type) {
     case ADD:
-      const id = state.length ? state.length + 1 : 1;
+      const id = state.length
+        ? state.map(el => el.order_id).reduce((a, b) => Math.max(a, b), 0) + 1
+        : 1;
       return state.concat({
         id: id,
         email: action.payload.email,

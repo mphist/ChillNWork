@@ -2,7 +2,7 @@ import React from "react";
 import Todo from "../components/Todo";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/modules";
-import { add } from "../store/modules/todo";
+import { add, Todos } from "../store/modules/todo";
 import axios from "axios";
 
 const TodoContainer = () => {
@@ -30,7 +30,9 @@ const TodoContainer = () => {
   const handleAddTodo = () => {
     const task = (document.getElementById("input-task") as HTMLInputElement)
       .value;
-    const order_id = todos.length + 1;
+    //extract order_id of each todo and return max order_id
+    const order_id =
+      todos.map(el => el.order_id).reduce((a, b) => Math.max(a, b), 0) + 1;
     if (email && task) {
       pushTodo(email, task, false)
         .then(function(response) {

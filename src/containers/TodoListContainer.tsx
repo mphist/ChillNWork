@@ -55,8 +55,8 @@ const TodoListContainer = () => {
         method: "post",
         url: process.env.REACT_APP_SITE_API_URL + "/data/todo/rearrange",
         data: {
-          source_idx: todos_array[result.source.index].order_id, //result.source.index + 1,
-          destination_idx: todos_array[result.destination.index].order_id //result.destination.index + 1
+          source_idx: todos_array[result.source.index].order_id - 1, //result.source.index + 1,
+          destination_idx: todos_array[result.destination.index].order_id + 1 //result.destination.index + 1
         }
       })
         .then(response => {

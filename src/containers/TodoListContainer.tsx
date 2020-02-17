@@ -3,13 +3,19 @@ import TodoList from "../components/TodoList";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store/modules";
-import { toggle, remove, TodosState, order } from "../store/modules/todo";
+import {
+  toggle,
+  remove,
+  TodosState,
+  order,
+  Todos
+} from "../store/modules/todo";
 import axios from "axios";
 
 const TodoListContainer = () => {
   const todos = useSelector((state: RootState) => state.todo);
   console.log("SHOW ME THE TODOS", todos);
-  console.log("LOCAL STORAGE", localStorage);
+  //console.log("LOCAL STORAGE", localStorage);
   const dispatch = useDispatch();
 
   const handleToggle = (id: number) => {
@@ -41,7 +47,7 @@ const TodoListContainer = () => {
 
   const onDragEnd = useCallback(
     result => {
-      console.log("onDragEnd", todos);
+      console.log("onDragEnd", result);
       if (!result.destination) {
         return;
       }
@@ -55,8 +61,8 @@ const TodoListContainer = () => {
         method: "post",
         url: process.env.REACT_APP_SITE_API_URL + "/data/todo/rearrange",
         data: {
-          source_idx: todos_array[result.source.index].order_id - 1, //result.source.index + 1,
-          destination_idx: todos_array[result.destination.index].order_id + 1 //result.destination.index + 1
+          source_idx: todos_array[result.source.index].order_id, //result.source.index + 1,
+          destination_idx: todos_array[result.destination.index].order_id //result.destination.index + 1
         }
       })
         .then(response => {
@@ -68,7 +74,7 @@ const TodoListContainer = () => {
     [todos, dispatch]
   );
 
-  const reOrder = (list: TodosState, startIndex: number, endIndex: number) => {
+  /* const reOrder = (list: TodosState, startIndex: number, endIndex: number) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
@@ -76,6 +82,38 @@ const TodoListContainer = () => {
     result[endIndex].order_id = result[startIndex].order_id;
     result[startIndex].order_id = temp;
     return result;
+  }; */
+  const reOrder = (list: TodosState, startIndex: number, endIndex: number) => {
+    const todoList = Array.from(list);
+    const source = todoList[startIndex].order_id;
+    const destination = todoList[endIndex].order_id;
+    if (source > destination) {
+      const newResult = todoList.map(el => {
+        if (el.order_id >= destination && el.order_id < source) {
+          el.order_id++;
+        } else if (el.order_id === source) {
+          el.order_id = destination;
+        }
+        return el;
+      });
+      const [removed] = newResult.splice(startIndex, 1);
+      newResult.splice(endIndex, 0, removed);
+      return newResult;
+    } else if (source < destination) {
+      const newResult = todoList.map(el => {
+        if (el.order_id > source && el.order_id <= destination) {
+          el.order_id--;
+        } else if (el.order_id === source) {
+          el.order_id = destination;
+        }
+        return el;
+      });
+      const [removed] = newResult.splice(startIndex, 1);
+      newResult.splice(endIndex, 0, removed);
+      return newResult;
+    } else {
+      return todoList;
+    }
   };
 
   return (

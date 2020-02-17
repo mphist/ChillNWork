@@ -37,7 +37,6 @@ const TodoContainer = () => {
       pushTodo(email, task, false)
         .then(function(response) {
           if (order_id !== null && email !== null) {
-            console.log("dispatch add");
             dispatch(add(email, task, false, order_id));
           }
           (document.getElementById("input-task") as HTMLInputElement).value =

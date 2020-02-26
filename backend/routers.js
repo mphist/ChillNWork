@@ -236,17 +236,17 @@ module.exports = {
     const { source_idx, destination_idx, email } = req.body;
     console.log("source and destination", source_idx, destination_idx);
     db.none(
-      "UPDATE todolist SET order_id = $1 WHERE email = $2 order_id = $3",
+      "UPDATE todolist SET order_id = $1 WHERE email = $2 AND order_id = $3",
       [-1, email, destination_idx]
     )
       .then(function(response) {
         db.none(
-          "UPDATE todolist SET order_id = $1 WHERE email = $2 order_id = $3",
+          "UPDATE todolist SET order_id = $1 WHERE email = $2 AND order_id = $3",
           [destination_idx, email, source_idx]
         )
           .then(function(response) {
             db.none(
-              "UPDATE todolist SET order_id = $1 WHERE email = $2 order_id = $3",
+              "UPDATE todolist SET order_id = $1 WHERE email = $2 AND order_id = $3",
               [source_idx, email, -1]
             ).then(function(response) {
               console.log("rearrange successful", response);

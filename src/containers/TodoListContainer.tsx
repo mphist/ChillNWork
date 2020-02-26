@@ -18,12 +18,12 @@ const TodoListContainer = () => {
   //console.log("LOCAL STORAGE", localStorage);
   const dispatch = useDispatch();
 
-  const handleToggle = (id: number) => {
+  const handleToggle = (id: number, email: string) => {
     console.log("toggling", id, todos);
     axios({
       method: "post",
       url: process.env.REACT_APP_SITE_API_URL + "/data/todo/toggle",
-      data: { id: id }
+      data: { id: id, email: email }
     })
       .then(response => {
         console.log("toggling", id);
@@ -32,11 +32,11 @@ const TodoListContainer = () => {
       .catch(err => console.log("error toggling todo", err.response));
   };
 
-  const handleRemove = (id: number) => {
+  const handleRemove = (id: number, email: string) => {
     axios({
       method: "post",
       url: process.env.REACT_APP_SITE_API_URL + "/data/todo/remove",
-      data: { id: id }
+      data: { id: id, email: email }
     })
       .then(response => {
         console.log("removing", id);
@@ -62,7 +62,8 @@ const TodoListContainer = () => {
         url: process.env.REACT_APP_SITE_API_URL + "/data/todo/rearrange",
         data: {
           source_idx: todos_array[result.source.index].order_id, //result.source.index + 1,
-          destination_idx: todos_array[result.destination.index].order_id //result.destination.index + 1
+          destination_idx: todos_array[result.destination.index].order_id, //result.destination.index + 1
+          email: todos_array[result.source.index].email
         }
       })
         .then(response => {

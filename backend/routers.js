@@ -193,13 +193,16 @@ module.exports = {
       });
   },
   todoToggleRouter: function todoToggleRouter(req, res, next) {
-    const { id } = req.body;
-    db.one("SELECT done FROM todolist WHERE order_id = $1", [id])
+    const { id, email } = req.body;
+    db.one("SELECT done FROM todolist WHERE email = $1 AND order_id = $2", [
+      email,
+      id
+    ])
       .then(function(data) {
-        db.none("UPDATE todolist SET done = $1 WHERE order_id = $2", [
-          !data.done,
-          id
-        ])
+        db.none(
+          "UPDATE todolist SET done = $1 WHERE email = $2 AND order_id = $3",
+          [!data.done, email, id]
+        )
           .then(function(response) {
             console.log("toggle todo in db", id);
             res.send(response);
@@ -217,8 +220,11 @@ module.exports = {
       });
   },
   todoRemoveRouter: function todoRemoveRouter(req, res, next) {
-    const { id } = req.body;
-    db.none("DELETE FROM todolist WHERE order_id = $1", [id])
+    const { id, email } = req.body;
+    db.none("DELETE FROM todolist WHERE email = $1 AND order_id = $2", [
+      email,
+      id
+    ])
       .then(function(response) {
         res.send(response);
       })
@@ -227,22 +233,22 @@ module.exports = {
       });
   },
   todoRearrangeRouter: function todoRearrangeRouter(req, res, next) {
-    const { source_idx, destination_idx } = req.body;
+    const { source_idx, destination_idx, email } = req.body;
     console.log("source and destination", source_idx, destination_idx);
-    db.none("UPDATE todolist SET order_id = $1 WHERE order_id = $2", [
-      -1,
-      destination_idx
-    ])
+    db.none(
+      "UPDATE todolist SET order_id = $1 WHERE email = $2 order_id = $3",
+      [-1, email, destination_idx]
+    )
       .then(function(response) {
-        db.none("UPDATE todolist SET order_id = $1 WHERE order_id = $2", [
-          destination_idx,
-          source_idx
-        ])
+        db.none(
+          "UPDATE todolist SET order_id = $1 WHERE email = $2 order_id = $3",
+          [destination_idx, email, source_idx]
+        )
           .then(function(response) {
-            db.none("UPDATE todolist SET order_id = $1 WHERE order_id = $2", [
-              source_idx,
-              -1
-            ]).then(function(response) {
+            db.none(
+              "UPDATE todolist SET order_id = $1 WHERE email = $2 order_id = $3",
+              [source_idx, email, -1]
+            ).then(function(response) {
               console.log("rearrange successful", response);
             });
           })

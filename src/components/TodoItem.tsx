@@ -13,8 +13,8 @@ import "./TodoItem.scss";
 
 interface PropType {
   todo: Todos;
-  onToggle: (id: number) => void;
-  onRemove: (id: number) => void;
+  onToggle: (id: number, email: string) => void;
+  onRemove: (id: number, email: string) => void;
 }
 
 const TodoItem = ({ todo, onToggle, onRemove }: PropType) => {
@@ -25,7 +25,7 @@ const TodoItem = ({ todo, onToggle, onRemove }: PropType) => {
       role={undefined}
       dense
       button
-      onClick={() => onToggle(todo.order_id)}
+      onClick={() => onToggle(todo.order_id, todo.email)}
     >
       <ListItemIcon>
         <Checkbox
@@ -36,7 +36,10 @@ const TodoItem = ({ todo, onToggle, onRemove }: PropType) => {
         />
       </ListItemIcon>
       <ListItemText id={String(todo.id)} primary={todo.task} />
-      <IconButton aria-label="delete" onClick={() => onRemove(todo.order_id)}>
+      <IconButton
+        aria-label="delete"
+        onClick={() => onRemove(todo.order_id, todo.email)}
+      >
         <DeleteIcon />
       </IconButton>
     </ListItem>

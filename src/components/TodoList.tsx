@@ -7,8 +7,8 @@ import { Todos } from "../store/modules/todo";
 
 interface PropType {
   todos: Todos[];
-  handleToggle: (id: number) => void;
-  handleRemove: (id: number) => void;
+  handleToggle: (id: number, email: string) => void;
+  handleRemove: (id: number, email: string) => void;
 }
 
 const TodoList = ({ todos, handleToggle, handleRemove }: PropType) => {
